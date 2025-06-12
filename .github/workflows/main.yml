@@ -11,8 +11,11 @@ jobs:
       - name: Run pipeline steps
         run: |
           echo "Pipeline triggered by webhook with dependency_update!"
+          echo "Version number: ${{ github.event.client_payload.version }}"
           echo "Payload data: ${{ github.event.client_payload.data }}"
           # Add your pipeline steps here (e.g., build, test, deploy)
       - name: Example step
         run: npm install && npm test
         if: github.event.client_payload.data == 'run-tests'
+      - name: Display version in file
+        run: echo ${{ github.event.client_payload.version }} > version.txt
