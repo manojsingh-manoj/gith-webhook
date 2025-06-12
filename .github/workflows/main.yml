@@ -1,7 +1,7 @@
 name: Trigger Pipeline via Webhook
 on:
   repository_dispatch:
-    types: [trigger-pipeline]
+    types: [dependency_update]
 jobs:
   pipeline:
     runs-on: ubuntu-latest
@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Run pipeline steps
         run: |
-          echo "Pipeline triggered by webhook!"
+          echo "Pipeline triggered by webhook with dependency_update!"
           echo "Payload data: ${{ github.event.client_payload.data }}"
           # Add your pipeline steps here (e.g., build, test, deploy)
       - name: Example step
